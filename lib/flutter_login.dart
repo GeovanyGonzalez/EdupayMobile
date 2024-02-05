@@ -13,12 +13,12 @@ import 'package:edupay/src/widgets/cards/auth_card_builder.dart';
 import 'package:edupay/src/widgets/fade_in.dart';
 import 'package:edupay/src/widgets/gradient_box.dart';
 import 'package:edupay/src/widgets/hero_text.dart';
-import 'package:edupay/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:flutter_login/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
@@ -403,7 +403,7 @@ class FlutterLogin extends StatefulWidget {
   final bool hideProvidersTitle;
 
   /// Disable the page transformation between switching authentication modes.
-  /// Fixes #97 if disabled. https://github.com/YosefPalma/flutter_login.git/issues/97
+  /// Fixes #97 if disabled. https://github.com/NearHuscarl/flutter_login/issues/97
   final bool disableCustomPageTransformer;
 
   /// Navigate back to the login screen after recovery of password.

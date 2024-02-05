@@ -3,12 +3,9 @@ library auth_card_builder;
 import 'dart:math';
 
 import 'package:another_transformer_page_view/another_transformer_page_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:edupay/flutter_login.dart';
 import 'package:edupay/src/utils/constants.dart';
 import 'package:edupay/src/utils/dart_helper.dart';
-
 import 'package:edupay/src/utils/matrix.dart';
 import 'package:edupay/src/utils/text_field_utils.dart';
 import 'package:edupay/src/utils/widget_helper.dart';
@@ -20,6 +17,8 @@ import 'package:edupay/src/widgets/custom_page_transformer.dart';
 import 'package:edupay/src/widgets/expandable_container.dart';
 import 'package:edupay/src/widgets/fade_in.dart';
 import 'package:edupay/src/widgets/term_of_service_checkbox.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sign_in_button/sign_in_button.dart';

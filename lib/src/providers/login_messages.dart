@@ -38,21 +38,21 @@ class LoginMessages with ChangeNotifier {
     this.recoverCodePasswordDescription = defaultRecoverCodePasswordDescription,
   });
 
-  static const defaultPasswordHint = 'Password';
-  static const defaultConfirmPasswordHint = 'Confirm Password';
-  static const defaultForgotPasswordButton = 'Forgot Password?';
-  static const defaultLoginButton = 'LOGIN';
+  static const defaultPasswordHint = 'Contraseña';
+  static const defaultConfirmPasswordHint = 'Confirmar contraseña';
+  static const defaultForgotPasswordButton = '¿Olvidaste tu contraseña?';
+  static const defaultLoginButton = 'Iniciar sesion';
   static const defaultSignupButton = 'SIGNUP';
-  static const defaultRecoverPasswordButton = 'Restablecer';
-  static const defaultRecoverPasswordIntro = 'Cambia tu contraseña aqui';
+  static const defaultRecoverPasswordButton = 'Solicitar';
+  static const defaultRecoverPasswordIntro = 'Solicitud de cambio de contraseña';
   static const defaultRecoverPasswordDescription =
-      ' send your plain-text password to this email account.';
-   static const defaultRecoverCodePasswordDescription =
-      'Ingresa tu correo para poder recuperar tu contraseña.';
-  static const defaultGoBackButton = 'BACK';
-  static const defaultConfirmPasswordError = 'Password do not match!';
-  static const defaultRecoverPasswordSuccess = 'An email has been sent';
-  static const defaultflushbarTitleSuccess = 'Success';
+      '';
+  static const defaultRecoverCodePasswordDescription =
+      'Ingresa tu correo para recuperar tu contraseña.';
+  static const defaultGoBackButton = 'Atras';
+  static const defaultConfirmPasswordError = 'La contraseña no coinside!';
+  static const defaultRecoverPasswordSuccess = 'El correo fue enviado exitosamente';
+  static const defaultflushbarTitleSuccess = 'Listo';
   static const defaultflushbarTitleError = 'Error';
   static const defaultSignUpSuccess = 'An activation link has been sent';
   static const defaultProvidersTitleFirst = 'or login with';
@@ -62,11 +62,11 @@ class LoginMessages with ChangeNotifier {
       'Please fill in this form to complete the signup';
 
   static const defaultConfirmRecoverIntro =
-      'The recovery code to set a new password was sent to your email.';
-  static const defaultRecoveryCodeHint = 'Recovery Code';
+      'El codigo de recuperacion fue enviado a su correo';
+  static const defaultRecoveryCodeHint = 'Codigo de recuperacion';
   static const defaultRecoveryCodeValidationError = 'Recovery code is empty';
-  static const defaultSetPasswordButton = 'SET PASSWORD';
-  static const defaultConfirmRecoverSuccess = 'Password recovered.';
+  static const defaultSetPasswordButton = 'Guardar contraseña';
+  static const defaultConfirmRecoverSuccess = 'Contraseña cambiada exitosamente.';
   static const defaultConfirmSignupIntro =
       'A confirmation code was sent to your email. '
       'Please enter the code to confirm your account.';
