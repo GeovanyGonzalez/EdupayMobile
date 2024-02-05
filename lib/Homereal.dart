@@ -49,7 +49,7 @@ class MyApp2 extends StatelessWidget {
                       mainAxisSpacing: 10,
                       children: [
                         _buildImageTile(
-                          imagePath: 'img/pagospendientes.png',
+                          imagePath: 'img/notifica.png',
                           text: 'Pagos pendientes',
                           onTap: () => Navigator.pushNamed(context, '/pantalla1'),
                         ),
