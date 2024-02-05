@@ -38,26 +38,43 @@ class MyApp2 extends StatelessWidget {
       ),
       // Imagen
       Container(
-        margin: EdgeInsets.only(top: 20),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.asset(
-            'img/Institutodemexico.png',
-            height: 200,
-          ),
-        ),
-      ),
-      // Texto informativo
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  children: [
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      children: [
+                        _buildImageTile(
+                          imagePath: 'img/pagospendientes.png',
+                          text: 'Pagos pendientes',
+                          onTap: () => Navigator.pushNamed(context, '/pantalla1'),
+                        ),
+                        _buildImageTile(
+                          imagePath: 'img/calendario.png',
+                          text: 'Calendario escolar',
+                          onTap: () => Navigator.pushNamed(context, '/pantalla2'),
+                        ),
+                        _buildImageTile(
+                          imagePath: 'img/notifica.png',
+                          text: 'Notificaciones',
+                          onTap: () => Navigator.pushNamed(context, '/pantalla3'),
+                        ),
+                        _buildImageTile(
+                          imagePath: 'img/factura.png',
+                          text: 'Historial  de pagos',
+                          onTap: () => Navigator.pushNamed(context, '/pantalla4'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
       Container(
-        padding: EdgeInsets.only(top: 20, left: 30, right: 50),
-        child: Text(
-          'El Instituto de México promueve la educación y le inculca valores a los jóvenes para ser el futuro de México',
-          textAlign: TextAlign.justify,
-        ),
-      ),
-      // Cuadro gris con pregunta y contacto
-      Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: EdgeInsets.only(top: 5),
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.grey[300],
@@ -74,6 +91,27 @@ class MyApp2 extends StatelessWidget {
   ),
 ),
       ),
+      
     );
   }
 }
+Widget _buildImageTile({
+    required String imagePath,
+    required String text,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Image.asset(
+            imagePath,
+            width: 150,
+            height: 150,
+            fit: BoxFit.cover,
+          ),
+          Text(text, textAlign: TextAlign.center),
+        ],
+      ),
+    );
+  }
