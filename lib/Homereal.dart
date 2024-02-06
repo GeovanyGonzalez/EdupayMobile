@@ -10,7 +10,7 @@ class MyApp2 extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 242, 197, 250), //  Aquí se establece el color de fondo
+        scaffoldBackgroundColor: Colors.deepPurple, //  Aquí se establece el color de fondo
       ),
       home: Scaffold(
         body: SingleChildScrollView(
@@ -122,7 +122,7 @@ Widget _buildImageTile({
       ),
     ),
     style: ElevatedButton.styleFrom(
-      primary: Color.fromARGB(255, 255, 255, 255),
+      primary: Color.fromARGB(255, 246, 225, 248),
       onPrimary: Colors.black,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
