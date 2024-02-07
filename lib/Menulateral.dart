@@ -34,10 +34,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
         leading: Image.asset('img/Edupay.png'), // Replace with your logo
-        title: Text('Edupay'), // Replace with your app's title
+        title: Text('',), // Replace with your app's title
         actions: [
           IconButton(
+            color:const Color.fromARGB(255, 228, 212, 254),
             icon: Icon(Icons.settings),
             onPressed: () {
               Navigator.push(
@@ -55,6 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
         children: _screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color.fromARGB(255, 125, 84, 196),
+        selectedItemColor: Color.fromARGB(255, 33, 1, 90),
+        unselectedItemColor: const Color.fromARGB(255, 228, 212, 254),
         currentIndex: _currentIndex,
         onTap: (index) => _pageController.animateToPage(index,
             duration: Duration(milliseconds: 400), curve: Curves.ease),

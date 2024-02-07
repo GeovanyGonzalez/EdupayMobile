@@ -9,10 +9,8 @@ class MyApp2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.deepPurple, //  Aquí se establece el color de fondo
-      ),
       home: Scaffold(
+        backgroundColor: Color.fromARGB(255, 246, 242, 253),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -33,42 +31,43 @@ class MyApp2 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text('Hola Edupay', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-                    Text('bienvenido a EDUPAY                                ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+                    Text('bienvenido a EDUPAY', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                     Text(' ', style: TextStyle(fontSize: 20)),
+                    Text('Tu plataforma móvil para un buen ámbito estudiantil', style: TextStyle(fontSize: 20)),
                   ],
                 ),
               ),
               // Imagen
               Container(
-                padding: EdgeInsets.only(top: 10, left: 80, right: 80),
+                padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   children: [
                     GridView.count(
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
+                      physics: NeverScrollableScrollPhysics(),
                       crossAxisCount: 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
                       children: [
                         _buildImageTile(
                           imagePath: 'img/pagospendientes.png',
                           text: 'Pagos pendientes',
-                          onTap: () => Navigator.pushNamed(context, '/pantalla1'),
+                          onTap: () => Navigator.pushNamed(context, '/rutaPagosPendientes'),
                         ),
                         _buildImageTile(
                           imagePath: 'img/calendarioremaster.png',
                           text: 'Calendario escolar',
-                          onTap: () => Navigator.pushNamed(context, '/pantalla2'),
+                          onTap: () => Navigator.pushNamed(context, '/rutaCalendarioEscolar'),
                         ),
                         _buildImageTile(
                           imagePath: 'img/notifica.png',
                           text: 'Notificaciones',
-                          onTap: () => Navigator.pushNamed(context, '/pantalla3'),
+                          onTap: () => Navigator.pushNamed(context, '/rutaNotificaciones'),
                         ),
                         _buildImageTile(
                           imagePath: 'img/factura.png',
                           text: 'Historial  de pagos',
-                          onTap: () => Navigator.pushNamed(context, '/pantalla4'),
+                          onTap: () => Navigator.pushNamed(context, '/rutaHistorialPagos'),
                         ),
                       ],
                     ),
@@ -76,7 +75,7 @@ class MyApp2 extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 5),
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
@@ -102,33 +101,26 @@ Widget _buildImageTile({
   required String text,
   required VoidCallback onTap,
 }) {
-  return ElevatedButton(
-    onPressed: onTap,
-    child: SizedBox(
-      width: 100,
-      height: 100,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            imagePath,
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
-          ),
-          SizedBox(height: 10),
-          Text(text, textAlign: TextAlign.center),
-        ],
-      ),
+  return GestureDetector(
+  onTap: onTap,
+  child: Container(
+    padding: EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      color: const Color.fromARGB(255, 228, 212, 254), // Asigna color al fondo del botón
+      borderRadius: BorderRadius.circular(10),
     ),
-    style: ElevatedButton.styleFrom(
-      primary: Color.fromARGB(255, 246, 225, 248),
-      onPrimary: Colors.black,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      elevation: 5,
-      shadowColor: Colors.grey,
+    child: Column(
+      children: [
+        Image.asset(
+          imagePath,
+          width: 80,
+          height: 80,
+          fit: BoxFit.cover,
+        ),
+        Text(text, textAlign: TextAlign.center),
+      ],
     ),
-  );
+  ),
+);
+
 }
