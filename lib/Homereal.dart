@@ -1,5 +1,5 @@
+import 'package:edupay/Micuenta.dart';
 import 'package:flutter/material.dart';
-
 void main() {
   runApp(MyApp2());
 }
@@ -19,8 +19,19 @@ class MyApp2 extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10, left: 30, right: 10),
                 child: Row(
                   children: <Widget>[
-                    Icon(Icons.person, size: 20),
-                    Text('  Edupay', style: TextStyle(fontSize: 20)),
+                    // GestureDetector for both image and text
+                    GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUsuario())),
+                      child: CircleAvatar(
+                        radius: 10, // Adjust size as needed
+                        backgroundImage: AssetImage('img/Papa.jpg'),
+                      ),
+                    ),
+                    SizedBox(width: 10), // Add spacing
+                    GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUsuario())),
+                      child: Text('Javier Ojeda', style: TextStyle(fontSize: 16)),
+                    ),
                   ],
                 ),
               ),
@@ -30,7 +41,7 @@ class MyApp2 extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Hola Edupay', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+                    Text('Hola Javier Ojeda', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                     Text('bienvenido a EDUPAY', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                     Text(' ', style: TextStyle(fontSize: 20)),
                     Text('Tu plataforma móvil para un buen ámbito estudiantil', style: TextStyle(fontSize: 20)),
@@ -50,9 +61,9 @@ class MyApp2 extends StatelessWidget {
                       mainAxisSpacing: 10,
                       children: [
                         _buildImageTile(
-                          imagePath: 'img/pagopendientenew.png',
+                          imagePath: 'img/Pagopendientenew.png',
                           text: 'Pagos pendientes',
-                          onTap: () => Navigator.pushNamed(context, '/rutaPagosPendientes'),
+                          onTap: () => Navigator.pushNamed(context, ''),
                         ),
                         _buildImageTile(
                           imagePath: 'img/Calendarionew.png',
