@@ -50,22 +50,22 @@ class MyApp2 extends StatelessWidget {
                       mainAxisSpacing: 10,
                       children: [
                         _buildImageTile(
-                          imagePath: 'img/pagospendientes.png',
+                          imagePath: 'img/pagopendientenew.png',
                           text: 'Pagos pendientes',
                           onTap: () => Navigator.pushNamed(context, '/rutaPagosPendientes'),
                         ),
                         _buildImageTile(
-                          imagePath: 'img/calendarioremaster.png',
+                          imagePath: 'img/Calendarionew.png',
                           text: 'Calendario escolar',
                           onTap: () => Navigator.pushNamed(context, '/rutaCalendarioEscolar'),
                         ),
                         _buildImageTile(
-                          imagePath: 'img/notifica.png',
+                          imagePath: 'img/Notificacionnew.png',
                           text: 'Notificaciones',
                           onTap: () => Navigator.pushNamed(context, '/rutaNotificaciones'),
                         ),
                         _buildImageTile(
-                          imagePath: 'img/factura.png',
+                          imagePath: 'img/Historialdeoagos.png',
                           text: 'Historial  de pagos',
                           onTap: () => Navigator.pushNamed(context, '/rutaHistorialPagos'),
                         ),
@@ -106,17 +106,19 @@ Widget _buildImageTile({
   child: Container(
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
-      color: const Color.fromARGB(255, 228, 212, 254), // Asigna color al fondo del botón
       borderRadius: BorderRadius.circular(10),
     ),
     child: Column(
       children: [
-        Image.asset(
-          imagePath,
-          width: 80,
-          height: 80,
-          fit: BoxFit.cover,
-        ),
+        ClipRRect(
+  borderRadius: BorderRadius.circular(20), // Ajusta el radio a tu gusto
+  child: Image.asset(
+    imagePath,
+    width: 100,
+    height: 100,
+    fit: BoxFit.cover,
+  ),
+),
         Text(text, textAlign: TextAlign.center),
       ],
     ),

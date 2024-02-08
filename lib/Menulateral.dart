@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
-        leading: Image.asset('img/Edupay.png'), // Replace with your logo
+        leading: Image.asset('img/Edupaymenu.png'), // Replace with your logo
         title: Text('',), // Replace with your app's title
         actions: [
           IconButton(
@@ -58,8 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color.fromARGB(255, 125, 84, 196),
-        selectedItemColor: Color.fromARGB(255, 33, 1, 90),
-        unselectedItemColor: const Color.fromARGB(255, 228, 212, 254),
+        unselectedItemColor: Color.fromARGB(255, 33, 1, 90),
+        selectedItemColor: const Color.fromARGB(255, 228, 212, 254),
         currentIndex: _currentIndex,
         onTap: (index) => _pageController.animateToPage(index,
             duration: Duration(milliseconds: 400), curve: Curves.ease),
