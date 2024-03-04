@@ -63,7 +63,7 @@ class _ConfirmSignupCardState extends State<_ConfirmSignupCard>
     final error = await auth.onConfirmSignup!(
       _code,
       LoginData(
-        name: auth.email,
+        email: auth.email,
         password: auth.password,
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PerfilUsuario extends StatelessWidget {
-  const PerfilUsuario({super.key});
+class PerfilHijo2 extends StatelessWidget {
+  const PerfilHijo2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +9,7 @@ class PerfilUsuario extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 246, 242, 253),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 139, 85, 231),
-        title: Text('Perfil de usuario'),
+        title: Text('Perfil de Ana Ojeda'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -17,7 +17,9 @@ class PerfilUsuario extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _buildCabecera(context),
-              SizedBox(height: 16.0), // Separación entre el rectángulo del papá y los de los hijos
+              SizedBox(height: 16.0),
+              _buildPendientesSection(context),
+ // Separación entre el rectángulo del papá y los de los hijos
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -41,19 +43,76 @@ class PerfilUsuario extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 50.0,
-            backgroundImage: AssetImage('img/Papa.jpg'),
+            backgroundImage: AssetImage('img/niña chica.jpg'),
           ),
           SizedBox(height: 16.0),
           Text(
-            'Javier De Jesus Ojeda Gonzales',
+            'Ana Patricia Ojeda Lopez',
             style: TextStyle(fontSize: 20.0),
           ),
           _buildInformacionSeccion(context, 'Escuela', 'Instituto de México'),
-          _buildInformacionSeccion(context, 'Email', 'Javier@gmail.com'),
           _buildInformacionSeccion(context, 'Teléfono', '555-555-5555'),
           _buildInformacionSeccion(context, 'Ciudad', 'Merida'),
           _buildInformacionSeccion(context, 'Dirección', 'Calle 123, Colonia 456'),
         ],
+      ),
+    );
+  }
+
+Widget _buildPendientesSection(BuildContext context) {
+  return Container(
+    padding: EdgeInsets.all(16.0),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(10.0),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.2),
+          spreadRadius: 1.0,
+          blurRadius: 5.0,
+          offset: Offset(0, 2),
+        ),
+      ],
+    ),
+    child: Wrap(
+      crossAxisAlignment: WrapCrossAlignment.start,
+      runSpacing: 8.0, // Ajusta el espacio entre filas
+      children: <Widget>[
+        Text(
+          'Pendientes:',
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 8.0),
+        Align(
+          alignment: Alignment.center,
+          child: _buildPendienteBox(context, 'Pago de la colegiatura de Ana Ojeda'),
+        ),
+        SizedBox(height: 8.0),
+        Align(
+          alignment: Alignment.center,
+          child: _buildPendienteBox(context, 'Pago de recursamiento de matematicas'),
+        ),
+      ],
+    ),
+  );
+}
+
+
+  Widget _buildPendienteBox(BuildContext context, String pendiente) {
+    return Container( // Container for each pendiente
+      padding: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[200], // Add background color
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      child: Text(
+        pendiente,
+        style: TextStyle(
+          fontSize: 16.0,
+        ),
       ),
     );
   }

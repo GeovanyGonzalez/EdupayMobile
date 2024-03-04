@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
-import 'package:flutter_login/flutter_login.dart';
+import 'package:edupay/Menulateral.dart';
 import 'package:edupay/constants.dart';
 import 'package:edupay/custom_route.dart';
 import 'package:edupay/users.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'Menulateral.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = '/auth';

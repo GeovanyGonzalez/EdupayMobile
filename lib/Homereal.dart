@@ -1,8 +1,34 @@
-import 'package:edupay/Micuenta.dart';
 import 'package:flutter/material.dart';
+import 'Micuenta.dart';
+import 'pantalla1.dart';
+import 'pantalla2.dart';
+import 'pantalla3.dart';
+
 void main() {
   runApp(MyApp2());
 }
+  final List<String> notificaciones = ['Ana Ojeda Pago de colegiatura', 'Pago de evento'];
+List<TarjetaEstudiante> estudiantes = [
+  TarjetaEstudiante(
+    imagen: 'img/Adolecente.jpg',
+    nombre: 'Juan Ojeda',
+    curso: 'Sexto A',
+    notificacion: false,
+  ),
+  TarjetaEstudiante(
+    imagen: 'img/niña chica.jpg',
+    nombre: 'Ana Ojeda',
+    curso: 'Tercero B',
+    notificacion: true, 
+  ),
+  TarjetaEstudiante(
+    imagen: 'img/child3.jpg',
+    nombre: 'María Ojeda',
+    curso: 'Primero C',
+    notificacion: false,
+  ),
+];
+
 
 class MyApp2 extends StatelessWidget {
   @override
@@ -16,25 +42,36 @@ class MyApp2 extends StatelessWidget {
             children: <Widget>[
               // Fila superior con icono de usuario y nombre
               Container(
-                padding: EdgeInsets.only(top: 10, left: 30, right: 10),
+                padding: EdgeInsets.only(top: 10, left: 3, right: 10),
                 child: Row(
                   children: <Widget>[
                     // GestureDetector for both image and text
                     GestureDetector(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUsuario())),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PerfilUsuario()),
+                        );
+                      },
                       child: CircleAvatar(
-                        radius: 10, // Adjust size as needed
+                        radius: 20, // Adjust size as needed
                         backgroundImage: AssetImage('img/Papa.jpg'),
                       ),
                     ),
                     SizedBox(width: 10), // Add spacing
                     GestureDetector(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PerfilUsuario())),
-                      child: Text('Javier Ojeda', style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PerfilUsuario()),
+                        );
+                      },
+                      child: Text('Javier Ojeda', style: TextStyle(fontSize: 20)),
                     ),
                   ],
                 ),
               ),
+
               // Mensaje de bienvenida
               Container(
                 padding: EdgeInsets.only(top: 20, left: 30, right: 10),
@@ -43,49 +80,124 @@ class MyApp2 extends StatelessWidget {
                   children: <Widget>[
                     Text('Hola Javier Ojeda', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                     Text('bienvenido a EDUPAY', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-                    Text(' ', style: TextStyle(fontSize: 20)),
                     Text('Tu plataforma móvil para un buen ámbito estudiantil', style: TextStyle(fontSize: 20)),
                   ],
                 ),
               ),
-              // Imagen
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  children: [
-                    GridView.count(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      children: [
-                        _buildImageTile(
-                          imagePath: 'img/Pagopendientenew.png',
-                          text: 'Pagos pendientes',
-                          onTap: () => Navigator.pushNamed(context, ''),
-                        ),
-                        _buildImageTile(
-                          imagePath: 'img/Calendarionew.png',
-                          text: 'Calendario escolar',
-                          onTap: () => Navigator.pushNamed(context, '/rutaCalendarioEscolar'),
-                        ),
-                        _buildImageTile(
-                          imagePath: 'img/Notificacionnew.png',
-                          text: 'Notificaciones',
-                          onTap: () => Navigator.pushNamed(context, '/rutaNotificaciones'),
-                        ),
-                        _buildImageTile(
-                          imagePath: 'img/Historialdeoagos.png',
-                          text: 'Historial  de pagos',
-                          onTap: () => Navigator.pushNamed(context, '/rutaHistorialPagos'),
-                        ),
-                      ],
-                    ),
-                  ],
+
+
+Container(
+  margin: EdgeInsets.only(top: 20),
+  height: 200, // Adjust height as needed
+  child: ListView.builder(
+    scrollDirection: Axis.horizontal,
+    itemCount: estudiantes.length, // Number of cards
+    itemBuilder: (context, index) {
+  TarjetaEstudiante estudiante = estudiantes[index];
+
+
+  return Container(
+    width: 200,
+    margin: EdgeInsets.symmetric(horizontal: 10),
+    child: Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: GestureDetector(
+                          onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(     builder: (context) => pantallas[index],
+                                      fullscreenDialog: true, // Ensure full-screen navigation
+
+                        ));
+                      },
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(estudiante.imagen),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  estudiante.nombre,
+                  style: TextStyle(fontSize: 18),
                 ),
+                if (estudiante.notificacion)
+                  Icon(
+                    Icons.notifications_active,
+                    color: Colors.red,
+                    size: 20,
+                  ),
+              ],
+            ),
+            SizedBox(height: 5),
+            Text(
+              estudiante.curso,
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+          
+        ),
+      ),
+    ),
+  ));
+},
+  ),
+),
+Container(
+        padding: EdgeInsets.all(15),
+        child: Text(
+          'Nuevas notificaciones',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+Container(//container de centro de notificaciones
+  color: Colors.grey[200],
+  height:  70.0 * notificaciones.length,
+  width: MediaQuery.of(context).size.width,
+  child: ListView.builder(
+    itemCount: notificaciones.length,
+    itemBuilder: (context, index) {
+      return Dismissible(
+        key: Key(notificaciones[index]),
+        onDismissed: (direction) {
+          (() {
+            notificaciones.removeAt(index);
+          });
+        },
+        child: GestureDetector(
+          onTap: () {
+            // Acciones al presionar la notificación
+          },
+          child: Container(
+            margin: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 212, 192, 245),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Text(
+              notificaciones[index],
+              style: TextStyle(
+                fontSize: 18.0,
               ),
-              Container(
+            ),
+          ),
+        ),
+      );
+    },
+  ),
+),              Container(
                 margin: EdgeInsets.only(top: 5),
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -107,33 +219,21 @@ class MyApp2 extends StatelessWidget {
   }
 }
 
-Widget _buildImageTile({
-  required String imagePath,
-  required String text,
-  required VoidCallback onTap,
-}) {
-  return GestureDetector(
-  onTap: onTap,
-  child: Container(
-    padding: EdgeInsets.all(10),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Column(
-      children: [
-        ClipRRect(
-  borderRadius: BorderRadius.circular(20), // Ajusta el radio a tu gusto
-  child: Image.asset(
-    imagePath,
-    width: 100,
-    height: 100,
-    fit: BoxFit.cover,
-  ),
-),
-        Text(text, textAlign: TextAlign.center),
-      ],
-    ),
-  ),
-);
+class TarjetaEstudiante {
+  String imagen;
+  String nombre;
+  String curso;
+  bool notificacion;
 
+  TarjetaEstudiante({
+    required this.imagen,
+    required this.nombre,
+    required this.curso,
+    required this.notificacion,
+  });
 }
+final List<Widget> pantallas = [
+  PerfilHijo1(),
+  PerfilHijo2(),
+  PerfilHijo3(),
+];

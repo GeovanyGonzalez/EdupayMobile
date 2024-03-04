@@ -343,7 +343,7 @@ class AuthCardState extends State<AuthCard> with TickerProviderStateMixin {
     Future<bool> requireSignUpConfirmation() async {
       final confirmSignupRequired = await auth.confirmSignupRequired?.call(
             LoginData(
-              name: auth.email,
+              email: auth.email,
               password: auth.password,
             ),
           ) ??
