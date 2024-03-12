@@ -1,10 +1,39 @@
 import 'package:flutter/material.dart';
+import 'Micuenta.dart';
 
 void main() {
   runApp(MyApp4());
 }
 
-class MyApp4 extends StatelessWidget {
+class MyApp4 extends StatefulWidget {
+  @override
+  _MyApp4State createState() => _MyApp4State();
+}
+  String contenidoNotificacion1 = '''
+Estimados Padres de Familia:
+
+Por medio del presente, les notificamos que el pago de la colegiatura correspondiente al mes de marzo de 2024 para la alumna Ana Ojeda, del grado Tercero grupo B, se encuentra vencido.
+
+Fecha límite de pago: 17/04/2024
+Monto a pagar: 1500
+''';
+String contenidoNotificacion2 = '''
+Estimados Padres de Familia:
+
+Por medio del presente, les informamos que se ha organizado un evento para todos los niños de la escuela primaria privada Instituto de Mexico. El evento se llevará a cabo el 19/03/2024 a las 9 am en nuestra institucion.
+
+El costo del evento es de 200 por niño e incluye:
+
+Boletos para las atracciones y almuerzo
+''';
+class _MyApp4State extends State<MyApp4> {
+  final List<Notificacion> _notificaciones = [
+    Notificacion('Ana Ojeda Pago', contenidoNotificacion1, 'imagen1.png'),
+    Notificacion('Pago de evento', contenidoNotificacion2, 'imagen2.png'),
+    Notificacion('Notificacion de prueba', 'Esta es una notificacion de prueba', 'imagen3.png'),
+  ];
+  final Map<int, bool> _isExpanded = {0: false, 1: false, 2: false};
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,11 +45,32 @@ class MyApp4 extends StatelessWidget {
               children: <Widget>[
                 // Fila superior con icono de usuario y nombre
                 Container(
-                  padding: EdgeInsets.only(top: 10, left: 30, right: 10),
+                  padding: EdgeInsets.only(top: 10, left: 3, right: 10),
                   child: Row(
                     children: <Widget>[
-                      Icon(Icons.person, size: 20),
-                      Text('  Edupay', style: TextStyle(fontSize: 20)),
+                      // GestureDetector for both image and text
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PerfilUsuario()),
+                          );
+                        },
+                        child: CircleAvatar(
+                          radius: 20, // Adjust size as needed
+                          backgroundImage: AssetImage('img/Papa.jpg'),
+                        ),
+                      ),
+                      SizedBox(width: 10), // Add spacing
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PerfilUsuario()),
+                          );
+                        },
+                        child: Text('Javier Ojeda', style: TextStyle(fontSize: 20)),
+                      ),
                     ],
                   ),
                 ),
@@ -37,306 +87,61 @@ class MyApp4 extends StatelessWidget {
                 ),
 
                 // Contenedor rectangular vertical con bordes circulares y contenido
-                Container(
-                  margin: EdgeInsets.only(top: 20, left: 30, right: 30),
-                  padding: EdgeInsets.all(50),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 5,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
+                for (var i = 0; i < _notificaciones.length; i++) ...[
+                  Container(
+                    margin: EdgeInsets.only(top: 20, left: 30, right: 30),
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 5,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              _notificaciones[i].nombre,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                _isExpanded[i] != null && _isExpanded[i]! ? Icons.expand_less : Icons.expand_more,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  for (var j = 0; j < _isExpanded.length; j++) {
+                                    _isExpanded[j] = (i == j);
+                                  }
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        if (_isExpanded[i] != null && _isExpanded[i]!)
+                          Column(
+                            children: [
+                              Text(
+                                _notificaciones[i].contenido,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 10),
+                            ],
+                          ),
+                      ],
+                    ),
                   ),
-                  child: Column(
-                    children: <Widget>[
-                      // Cada notificación independiente
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Stack(
-                        children: <Widget>[
-                          // Agregar el icono de notificación
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.notifications, size: 20),
-                              SizedBox(width: 10),
-                              // Agregar el texto de la notificación
-                              Text('Notificacion 1'),
-                            ],
-                          ),
-                          // Posicionar un widget "Nuevo" en la esquina superior derecha
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 244, 238, 54),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text('New', style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 10)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Stack(
-                        children: <Widget>[
-                          // Agregar el icono de notificación
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.notifications, size: 20),
-                              SizedBox(width: 10),
-                              // Agregar el texto de la notificación
-                              Text('Notificacion 2'),
-                            ],
-                          ),
-                          // Posicionar un widget "Nuevo" en la esquina superior derecha
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 244, 238, 54),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text('New', style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 10)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Stack(
-                        children: <Widget>[
-                          // Agregar el icono de notificación
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.notifications, size: 20),
-                              SizedBox(width: 10),
-                              // Agregar el texto de la notificación
-                              Text('Notificacion 3'),
-                            ],
-                          ),
-                          // Posicionar un widget "Nuevo" en la esquina superior derecha
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 244, 238, 54),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text('New', style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 10)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Stack(
-                        children: <Widget>[
-                          // Agregar el icono de notificación
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.notifications, size: 20),
-                              SizedBox(width: 10),
-                              // Agregar el texto de la notificación
-                              Text('Notificacion 4'),
-                            ],
-                          ),
-                          // Posicionar un widget "Nuevo" en la esquina superior derecha
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 244, 238, 54),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text('New', style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 10)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Stack(
-                        children: <Widget>[
-                          // Agregar el icono de notificación
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.notifications, size: 20),
-                              SizedBox(width: 10),
-                              // Agregar el texto de la notificación
-                              Text('Notificacion 5'),
-                            ],
-                          ),
-                          // Posicionar un widget "Nuevo" en la esquina superior derecha
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 244, 238, 54),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text('New', style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 10)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Stack(
-                        children: <Widget>[
-                          // Agregar el icono de notificación
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.notifications, size: 20),
-                              SizedBox(width: 10),
-                              // Agregar el texto de la notificación
-                              Text('Notificacion 6'),
-                            ],
-                          ),
-                          // Posicionar un widget "Nuevo" en la esquina superior derecha
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 244, 238, 54),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text('New', style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 10)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Stack(
-                        children: <Widget>[
-                          // Agregar el icono de notificación
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.notifications, size: 20),
-                              SizedBox(width: 10),
-                              // Agregar el texto de la notificación
-                              Text('Notificacion 7'),
-                            ],
-                          ),
-                          // Posicionar un widget "Nuevo" en la esquina superior derecha
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 244, 238, 54),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text('New', style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 10)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Stack(
-                        children: <Widget>[
-                          // Agregar el icono de notificación
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.notifications, size: 20),
-                              SizedBox(width: 10),
-                              // Agregar el texto de la notificación
-                              Text('Notificacion 8'),
-                            ],
-                          ),
-                          // Posicionar un widget "Nuevo" en la esquina superior derecha
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 244, 238, 54),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text('New', style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 10)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                      // ... (agrega más notificaciones según sea necesario)
-                    ],
-                  ),
-                ),
+                ],
               ],
             ),
           ),
@@ -344,4 +149,12 @@ class MyApp4 extends StatelessWidget {
       ),
     );
   }
+}
+
+class Notificacion {
+  final String nombre;
+  final String contenido;
+  final String imagen;
+
+  Notificacion(this.nombre, this.contenido, this.imagen);
 }

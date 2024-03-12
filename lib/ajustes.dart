@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
+import 'Micuenta.dart';
 
 class PantallaCerrarSesion extends StatelessWidget {
   const PantallaCerrarSesion({Key? key}) : super(key: key);
@@ -11,14 +12,35 @@ class PantallaCerrarSesion extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 10, left: 30, right: 10),
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.person, size: 20),
-                  Text('  Edupay', style: TextStyle(fontSize: 20)),
-                ],
+                padding: EdgeInsets.only(top: 10, left: 3, right: 10),
+                child: Row(
+                  children: <Widget>[
+                    // GestureDetector for both image and text
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PerfilUsuario()),
+                        );
+                      },
+                      child: CircleAvatar(
+                        radius: 20, // Adjust size as needed
+                        backgroundImage: AssetImage('img/Papa.jpg'),
+                      ),
+                    ),
+                    SizedBox(width: 10), // Add spacing
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PerfilUsuario()),
+                        );
+                      },
+                      child: Text('Javier Ojeda', style: TextStyle(fontSize: 20)),
+                    ),
+                  ],
+                ),
               ),
-            ),
             // Mensaje de bienvenida
             Container(
               padding: EdgeInsets.only(top: 20, left: 30, right: 10),
@@ -41,7 +63,7 @@ class PantallaCerrarSesion extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.grey,
+                  backgroundColor: Colors.grey,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

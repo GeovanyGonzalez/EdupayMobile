@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'Homereal.dart';
 import 'notificaciones.dart';
 import 'ajustes.dart';
-
+import 'Pagos.dart';
 void main() => runApp(MyApp3());
 
 class MyApp3 extends StatelessWidget {
@@ -26,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _screens = [
     MyApp2(),
-    PantallaCerrarSesion(),
+    PagosScreen(),
     MyApp4(),
   ];
 
