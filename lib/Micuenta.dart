@@ -41,7 +41,7 @@ class PerfilUsuario extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 50.0,
-            backgroundImage: AssetImage('img/Padrevlad.jpeg'),//aqui se mostrara el Profile_Photo que se proporciona con el token
+            backgroundImage: AssetImage('img/AAAAAAA.png'),//aqui se mostrara el Profile_Photo que se proporciona con el token
           ),
           SizedBox(height: 16.0),
           Text(
