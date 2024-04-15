@@ -41,18 +41,22 @@ class PerfilUsuario extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 50.0,
-            backgroundImage: AssetImage('img/Papa.jpg'),
+            backgroundImage: AssetImage('img/Padrevlad.jpg'),//aqui se mostrara el Profile_Photo que se proporciona con el token
           ),
           SizedBox(height: 16.0),
           Text(
             'Javier De Jesus Ojeda Gonzales',
             style: TextStyle(fontSize: 20.0),
           ),
-          _buildInformacionSeccion(context, 'Escuela', 'Instituto de México'),
-          _buildInformacionSeccion(context, 'Email', 'Javier@gmail.com'),
-          _buildInformacionSeccion(context, 'Teléfono', '555-555-5555'),
-          _buildInformacionSeccion(context, 'Ciudad', 'Merida'),
-          _buildInformacionSeccion(context, 'Dirección', 'Calle 123, Colonia 456'),
+          _buildInformacionSeccion(context, 'Nombre: ', 'Vlad Axel'),//aqui se mostrara el Nombre que se proporciona con el token
+          _buildInformacionSeccion(context, 'Email: ', 'Vladi@edupay.com'),//aqui se mostrara el email que se proporciona con el token
+          _buildInformacionSeccion(context, 'Password: ', '123'),//aqui se mostrara el Lastname que se proporciona con el token
+          _buildInformacionSeccion(context, 'Rol: ', 'FATHER'),//aqui se mostrara el Rol que se proporciona con el token
+          _buildInformacionSeccion(context, 'Ocupación: ', 'Desarrollo de software'),//aqui se mostrara el Lastname que se proporciona con el token
+          _buildInformacionSeccion(context, 'Dirección: ', 'Unidad Habitacional Morelos'),//aqui se mostrara el Lastname que se proporciona con el token
+          _buildInformacionSeccion(context, 'Tel: ', '9993868762'),//aqui se mostrara el Lastname que se proporciona con el token
+          _buildInformacionSeccion(context, 'Apellidos: ', 'Vargaz Medina'),//aqui se mostrara el Lastname que se proporciona con el token
+
         ],
       ),
     );

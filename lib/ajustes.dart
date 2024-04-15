@@ -25,7 +25,7 @@ class PantallaCerrarSesion extends StatelessWidget {
                       },
                       child: CircleAvatar(
                         radius: 20, // Adjust size as needed
-                        backgroundImage: AssetImage('img/Papa.jpg'),
+                        backgroundImage: AssetImage('img/Padrevlad.jpg'),
                       ),
                     ),
                     SizedBox(width: 10), // Add spacing
