@@ -40,7 +40,6 @@ flutter:
   assets:
     - img/
     - img/notifica.png
-
     - assets/audio/Bienvenido.mp3
 
 

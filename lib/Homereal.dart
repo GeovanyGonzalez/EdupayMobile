@@ -56,7 +56,7 @@ class MyApp2 extends StatelessWidget {
                       },
                       child: CircleAvatar(
                         radius: 20, // Adjust size as needed
-                        backgroundImage: AssetImage('img/Padrevlad.jpg'),
+                        backgroundImage: AssetImage('img/Padrevlad.jpeg'),
                       ),
                     ),
                     SizedBox(width: 10), // Add spacing
