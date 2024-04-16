@@ -12,7 +12,7 @@ class MyApp4 extends StatefulWidget {
   String contenidoNotificacion1 = '''
 Estimados Padres de Familia:
 
-Por medio del presente, les notificamos que el pago de la colegiatura correspondiente al mes de marzo de 2024 para la alumna Ana Ojeda, del grado Tercero grupo B, se encuentra vencido.
+Por medio del presente, les notificamos que el pago de la colegiatura correspondiente al mes de marzo de 2024 para la alumna Alondra Vargas, del grado Tercero grupo B, se encuentra vencido.
 
 Fecha límite de pago: 17/04/2024
 Monto a pagar: 1500
@@ -28,7 +28,7 @@ Boletos para las atracciones y almuerzo
 ''';
 class _MyApp4State extends State<MyApp4> {
   final List<Notificacion> _notificaciones = [
-    Notificacion('Ana Ojeda Pago', contenidoNotificacion1, 'imagen1.png'),
+    Notificacion('Alondra Vargas Pago', contenidoNotificacion1, 'imagen1.png'),
     Notificacion('Pago de evento', contenidoNotificacion2, 'imagen2.png'),
     Notificacion('Notificacion de prueba', 'Esta es una notificacion de prueba', 'imagen3.png'),
   ];
@@ -58,7 +58,7 @@ class _MyApp4State extends State<MyApp4> {
                         },
                         child: CircleAvatar(
                           radius: 20, // Adjust size as needed
-                          backgroundImage: AssetImage('img/Padrevlad.jpeg'),
+                          backgroundImage: AssetImage('img/Papa.jpg'),
                         ),
                       ),
                       SizedBox(width: 10), // Add spacing
@@ -69,7 +69,7 @@ class _MyApp4State extends State<MyApp4> {
                             MaterialPageRoute(builder: (context) => PerfilUsuario()),
                           );
                         },
-                        child: Text('Javier Ojeda', style: TextStyle(fontSize: 20)),
+                        child: Text('Vlad Vargas', style: TextStyle(fontSize: 20)),
                       ),
                     ],
                   ),

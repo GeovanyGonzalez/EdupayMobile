@@ -8,13 +8,13 @@ class PagosScreen extends StatefulWidget {
 
 class _PagosScreenState extends State<PagosScreen> {
   List<Pago> pagosPendientes = [
-    Pago(fecha: "2024-03-04", monto: 1500, descripcion: "Pago de colegiatura de Ana Ojeda"),
-    Pago(fecha: "2024-03-05", monto: 200, descripcion: "Pago de evento escolar"),
+    Pago(fecha: "2024-09-06", monto: 1500, descripcion: "Pago de colegiatura de Alondra Vargas"),
+    Pago(fecha: "2024-10-07", monto: 200, descripcion: "Pago de evento escolar"),
   ];
 
   List<Pago> historialPagos = [
-    Pago(fecha: "2024-02-28", monto: 1500, descripcion: "Pago de colegiatura de Juan Ojeda"),
-    Pago(fecha: "2024-03-01", monto: 1500, descripcion: "Pago de colegiatura de Maria Ojeda"),
+    Pago(fecha: "2024-02-28", monto: 1500, descripcion: "Pago de colegiatura de Roberto Vargas"),
+    Pago(fecha: "2024-03-01", monto: 1500, descripcion: "Pago de colegiatura de Yui Vargas"),
   ];
 
   @override

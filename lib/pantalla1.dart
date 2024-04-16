@@ -46,13 +46,13 @@ class PerfilHijo1 extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           Text(
-            'Juan De Jesus Ojeda Lopez',
+            'Roberto Vargas Grande',
             style: TextStyle(fontSize: 20.0),
           ),
           _buildInformacionSeccion(context, 'Escuela', 'Instituto de México'),
-          _buildInformacionSeccion(context, 'Teléfono', '555-555-5555'),
-          _buildInformacionSeccion(context, 'Ciudad', 'Merida'),
-          _buildInformacionSeccion(context, 'Dirección', 'Calle 123, Colonia 456'),
+          _buildInformacionSeccion(context, 'Teléfono', 'null'),
+          _buildInformacionSeccion(context, 'email', 'robertito@edupay.com'),
+          _buildInformacionSeccion(context, 'Dirección', 'Unidad Habitacional Morelos'),
         ],
       ),
     );

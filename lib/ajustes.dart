@@ -25,7 +25,7 @@ class PantallaCerrarSesion extends StatelessWidget {
                       },
                       child: CircleAvatar(
                         radius: 20, // Adjust size as needed
-                        backgroundImage: AssetImage('img/Padrevlad.jpeg'),
+                        backgroundImage: AssetImage('img/Papa.jpg'),
                       ),
                     ),
                     SizedBox(width: 10), // Add spacing
@@ -36,7 +36,7 @@ class PantallaCerrarSesion extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => PerfilUsuario()),
                         );
                       },
-                      child: Text('Javier Ojeda', style: TextStyle(fontSize: 20)),
+                      child: Text('Vlad Vargas', style: TextStyle(fontSize: 20)),
                     ),
                   ],
                 ),

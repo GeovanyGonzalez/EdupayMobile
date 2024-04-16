@@ -9,7 +9,7 @@ class PerfilHijo2 extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 246, 242, 253),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 139, 85, 231),
-        title: Text('Perfil de Ana Ojeda'),
+        title: Text('Perfil de Alondra Vargas'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -47,13 +47,13 @@ class PerfilHijo2 extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           Text(
-            'Ana Patricia Ojeda Lopez',
+            'Alondra Vargas Grande',
             style: TextStyle(fontSize: 20.0),
           ),
           _buildInformacionSeccion(context, 'Escuela', 'Instituto de México'),
-          _buildInformacionSeccion(context, 'Teléfono', '555-555-5555'),
-          _buildInformacionSeccion(context, 'Ciudad', 'Merida'),
-          _buildInformacionSeccion(context, 'Dirección', 'Calle 123, Colonia 456'),
+          _buildInformacionSeccion(context, 'Teléfono', 'null'),
+          _buildInformacionSeccion(context, 'Email', 'Alondra@edupay.com'),
+          _buildInformacionSeccion(context, 'Dirección', 'Unidad Habitacional Morelos'),
         ],
       ),
     );
@@ -88,7 +88,7 @@ Widget _buildPendientesSection(BuildContext context) {
         SizedBox(height: 8.0),
         Align(
           alignment: Alignment.center,
-          child: _buildPendienteBox(context, 'Pago de la colegiatura de Ana Ojeda'),
+          child: _buildPendienteBox(context, 'Pago de la colegiatura de Alondra Vargas'),
         ),
         SizedBox(height: 8.0),
         Align(

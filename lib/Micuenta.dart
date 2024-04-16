@@ -41,11 +41,11 @@ class PerfilUsuario extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 50.0,
-            backgroundImage: AssetImage('img/AAAAAAA.png'),//aqui se mostrara el Profile_Photo que se proporciona con el token
+            backgroundImage: AssetImage('img/Papa.jpg'),//aqui se mostrara el Profile_Photo que se proporciona con el token
           ),
           SizedBox(height: 16.0),
           Text(
-            'Javier De Jesus Ojeda Gonzales',
+            'Vlad Axel Vargas Medina',
             style: TextStyle(fontSize: 20.0),
           ),
           _buildInformacionSeccion(context, 'Nombre: ', 'Vlad Axel'),//aqui se mostrara el Nombre que se proporciona con el token
@@ -55,7 +55,7 @@ class PerfilUsuario extends StatelessWidget {
           _buildInformacionSeccion(context, 'Ocupación: ', 'Desarrollo de software'),//aqui se mostrara el Lastname que se proporciona con el token
           _buildInformacionSeccion(context, 'Dirección: ', 'Unidad Habitacional Morelos'),//aqui se mostrara el Lastname que se proporciona con el token
           _buildInformacionSeccion(context, 'Tel: ', '9993868762'),//aqui se mostrara el Lastname que se proporciona con el token
-          _buildInformacionSeccion(context, 'Apellidos: ', 'Vargaz Medina'),//aqui se mostrara el Lastname que se proporciona con el token
+          _buildInformacionSeccion(context, 'Apellidos: ', 'Vargas Medina'),//aqui se mostrara el Lastname que se proporciona con el token
 
         ],
       ),

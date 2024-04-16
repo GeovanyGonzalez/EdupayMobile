@@ -8,23 +8,23 @@ import 'pantalla3.dart';
 void main() {
   runApp(MyApp2());
 }
-  final List<String> notificaciones = ['Ana Ojeda Pago de colegiatura', 'Pago de evento'];
+  final List<String> notificaciones = ['Alondra Vargas Pago de colegiatura', 'Pago de evento'];
 List<TarjetaEstudiante> estudiantes = [
   TarjetaEstudiante(
     imagen: 'img/Adolecente.jpg',
-    nombre: 'Juan Ojeda',
+    nombre: 'Roberto Vargas',
     curso: 'Sexto A',
     notificacion: false,
   ),
   TarjetaEstudiante(
     imagen: 'img/niña chica.jpg',
-    nombre: 'Ana Ojeda',
+    nombre: 'Alondra Vargas',
     curso: 'Tercero B',
     notificacion: true, 
   ),
   TarjetaEstudiante(
     imagen: 'img/child3.jpg',
-    nombre: 'María Ojeda',
+    nombre: 'Yui Vargas',
     curso: 'Primero C',
     notificacion: false,
   ),
@@ -67,7 +67,7 @@ class MyApp2 extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => PerfilUsuario()),
                         );
                       },
-                      child: Text('Javier Ojeda', style: TextStyle(fontSize: 20)),
+                      child: Text('Vlad Vargas', style: TextStyle(fontSize: 20)),
                     ),
                   ],
                 ),
@@ -79,7 +79,7 @@ class MyApp2 extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Hola Javier Ojeda', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+                    Text('Hola Vlad Vargas', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                     Text('bienvenido a EDUPAY', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                     Text('Tu plataforma móvil para un buen ámbito estudiantil', style: TextStyle(fontSize: 20)),
                   ],
