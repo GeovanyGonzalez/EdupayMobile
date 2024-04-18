@@ -60,7 +60,7 @@ class _PagosScreenState extends State<PagosScreen> {
   List<Pago> pagosPendientes = [
     Pago(
         // ignore: avoid_dynamic_calls
-        titulo: notificacions[0]["title"].toString(),
+        titulo: "2024-02-28",
         descripcion: "Pago de colegiatura de Alondra Vargas"),
     ];
 
