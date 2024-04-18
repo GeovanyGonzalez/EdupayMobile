@@ -11,10 +11,11 @@ dependencies:
   another_flushbar: ^1.10.29
   another_transformer_page_view: ^2.0.0
   audio_service: ^0.18.12
-  audioplayers: ^5.2.1
+  audioplayers: ^6.0.0
   flutter:
     sdk: flutter
   flutter_login: ^5.0.0
+  flutter_secure_storage: ^9.0.0
   font_awesome_flutter: ^10.0.0
   http: ^1.2.0
   intl_phone_number_input: ^0.7.4

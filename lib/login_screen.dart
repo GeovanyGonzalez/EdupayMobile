@@ -7,8 +7,10 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_login/flutter_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'main.dart';
+
 String welcomeToJson(Welcome data) => json.encode(data.toJson());
 
 class Welcome {
@@ -31,6 +33,8 @@ class Welcome {
       };
 }
 
+final storage = FlutterSecureStorage();
+
 // Servicio de Autenticación
 class AuthService {
   static Future<Welcome> login(String email, String password) async {
@@ -41,20 +45,19 @@ class AuthService {
     );
 
     if (response.statusCode == 200) {
-    final Map<String, dynamic> data = jsonDecode(response.body) as Map<String, dynamic>;
+      final Map<String, dynamic> data =
+          jsonDecode(response.body) as Map<String, dynamic>;
 
-            // Extraer el token de la respuesta (asumiendo que está en un campo llamado "token")
-            final String token = data['token'] as String;
-            final prefs = await SharedPreferences.getInstance();
-            await prefs.setString('token', token);
-            // Usar el token para recuperar la información del usuario (explicado en el paso 2)
-            return Welcome.fromJson(data); // O devolver null si hay un problema
+      // Extraer el token de la respuesta (asumiendo que está en un campo llamado "token")
+      final String token = data['token'] as String;
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('token', token);
+      // Usar el token para recuperar la información del usuario (explicado en el paso 2)
+      return Welcome.fromJson(data); // O devolver null si hay un problema
     } else {
       throw Exception('Error al iniciar sesión');
     }
-    
   }
-  
 }
 
 // Pantalla de Inicio de Sesión
@@ -68,59 +71,65 @@ class LoginScreen extends StatelessWidget {
   Future<String?> _loginUser(LoginData data, BuildContext context) async {
     try {
       final response = await http.post(
-      Uri.parse('https://edupay-oi22.onrender.com/api/login'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode({
-        'email': data.name,
-        'password': data.password,
-      }),
-    );
-    print('Request URL: ${response.request!.url}');
-    print('Response Status Code: ${response.statusCode}');
-    print('Response Body: ${response.body}');
+        Uri.parse('https://edupay-oi22.onrender.com/api/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          'email': data.name,
+          'password': data.password,
+        }),
+      );
+      print('Request URL: ${response.request!.url}');
+      print('Response Status Code: ${response.statusCode}');
+      print('Response Body: ${response.body}');
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body) as Map<String, dynamic>;
-            final welcome = Welcome.fromJson(data);
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data =
+            jsonDecode(response.body) as Map<String, dynamic>;
+        final welcome = Welcome.fromJson(data);
 
-            // Extraer el token de la respuesta (asumiendo que está en un campo llamado "token")
-            final String token = data['token'] as String;
-            final prefs = await SharedPreferences.getInstance();
-            await prefs.setString('token', token);
-            // Usar el token para recuperar la información del usuario (explicado en el paso 2)
+        // Extraer el token de la respuesta (asumiendo que está en un campo llamado "token")
+        final String token = data['token'] as String;
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', token);
+        await storage.write(key: 'token', value: token);
+
+        print(await storage.read(key: 'token'));
+        // Usar el token para recuperar la información del usuario (explicado en el paso 2)
       } else {
+        // Show error message
+        ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+          SnackBar(content: Text('Error al iniciar sesión')),
+        );
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => MyApp(),
+          ),
+        );
+      }
+      if (response.statusCode == 401) {
+        // Assuming 401 for invalid credentials
+        // Show a specific error message indicating invalid account
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text('Cuenta no encontrada o contraseña incorrecta')),
+        );
+        // Don't proceed with parsing or navigating
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => MyApp(),
+          ),
+        );
+      }
+    } on Exception catch (e) {
       // Show error message
       ScaffoldMessenger.of(context as BuildContext).showSnackBar(
-        SnackBar(content: Text('Error al iniciar sesión')),
+        SnackBar(content: Text(e.toString())),
       );
-Navigator.of(context).pushReplacement(
-  MaterialPageRoute(
-    builder: (context) => MyApp(),
-  ),
-);
     }
-        if (response.statusCode == 401) { // Assuming 401 for invalid credentials
-  // Show a specific error message indicating invalid account
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text('Cuenta no encontrada o contraseña incorrecta')),
-  );
-  // Don't proceed with parsing or navigating
-Navigator.of(context).pushReplacement(
-  MaterialPageRoute(
-    builder: (context) => MyApp(),
-  ),
-);
-}
-    } on Exception catch (e) {
-    // Show error message
-    ScaffoldMessenger.of(context as BuildContext).showSnackBar(
-      SnackBar(content: Text(e.toString())),
-    );
   }
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +167,7 @@ Navigator.of(context).pushReplacement(
           fieldValidator: (value) {
             final phoneRegExp = RegExp(
               '^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}\$',
-                        );
+            );
             if (value != null &&
                 value.length < 7 &&
                 !phoneRegExp.hasMatch(value)) {
@@ -193,8 +202,8 @@ Navigator.of(context).pushReplacement(
           ),
         );
       },
-
-      headerWidget: const IntroWidget(), onRecoverPassword: (String ) {  },
+      headerWidget: const IntroWidget(),
+      onRecoverPassword: (String) {},
     );
   }
 }

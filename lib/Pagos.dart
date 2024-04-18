@@ -1,21 +1,74 @@
+import 'dart:convert';
+import 'dart:js_util';
+
+import 'package:edupay/Homereal.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'Pagotarjeta.dart';
 
 class PagosScreen extends StatefulWidget {
+  final Storage = const FlutterSecureStorage();
   @override
   _PagosScreenState createState() => _PagosScreenState();
 }
 
 class _PagosScreenState extends State<PagosScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getUser();
+    notificaciones();
+  }
+  dynamic data;
+  dynamic notificacions;
+
+  Future getUser() async {
+    
+    final token = await widget.Storage.read(key: 'token');
+    final response = await http.get(
+      Uri.parse('https://edupay-oi22.onrender.com/api/Padre'),
+      headers: {'Authorization': 'Bearer $token'},
+    );
+    if (response.statusCode == 200) {
+      setState(() {
+        data = jsonDecode(response.body);
+        return jsonDecode(response.statusCode.toString());
+      });
+      
+    } else {
+      throw Exception('Failed to load user');
+    }
+  }
+  Future notificaciones() async {
+    final response = await http.post(
+      Uri.parse('https://edupay-oi22.onrender.com/api/notificaciones'),
+      body: {"userid": data["tutorados"][0]["id"]},
+    );
+
+    if (response.statusCode == 200) {
+      setState(() {
+        notificacions = jsonDecode(response.body);
+      });
+    }
+    else {
+      throw Exception('Failed to load notificaciones');
+    }
+  }
+
   List<Pago> pagosPendientes = [
-    Pago(fecha: "2024-09-06", monto: 1500, descripcion: "Pago de colegiatura de Alondra Vargas"),
-    Pago(fecha: "2024-10-07", monto: 200, descripcion: "Pago de evento escolar"),
-  ];
+    Pago(
+        // ignore: avoid_dynamic_calls
+        titulo: notificacions[0]["title"].toString(),
+        descripcion: "Pago de colegiatura de Alondra Vargas"),
+    ];
 
   List<Pago> historialPagos = [
-    Pago(fecha: "2024-02-28", monto: 1500, descripcion: "Pago de colegiatura de Roberto Vargas"),
-    Pago(fecha: "2024-03-01", monto: 1500, descripcion: "Pago de colegiatura de Yui Vargas"),
-  ];
+    Pago(
+        titulo: "2024-02-28",
+        descripcion: "Pago de colegiatura de Roberto Vargas"),
+    ];
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +114,11 @@ class _PagosScreenState extends State<PagosScreen> {
 }
 
 class Pago {
-  String fecha;
-  double monto;
+  String titulo;
   String descripcion;
 
-  Pago({required this.fecha, required this.monto, required this.descripcion});
+
+  Pago({required this.titulo, required this.descripcion, });
 }
 
 class PagoPendienteItem extends StatelessWidget {
@@ -77,15 +130,17 @@ class PagoPendienteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(pago.descripcion),
-        subtitle: Text("Fecha: ${pago.fecha} - Monto: \$ ${pago.monto}"),
-        trailing: ElevatedButton( // Use ElevatedButton instead of RaisedButton
+        title: Text(pago.titulo),
+        subtitle: Text("Fecha: ${pago.descripcion} }"),
+        trailing: ElevatedButton(
+          // Use ElevatedButton instead of RaisedButton
           child: Text("Pagar"),
           onPressed: () {
-                Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PagoTarjetaScreen()),
-              );          },
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PagoTarjetaScreen()),
+            );
+          },
         ),
       ),
     );
@@ -101,8 +156,8 @@ class HistorialPagoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(pago.descripcion),
-        subtitle: Text("Fecha: ${pago.fecha} - Monto: \$ ${pago.monto}"),
+        title: Text(pago.titulo),
+        subtitle: Text("Fecha: ${pago.descripcion}"),
       ),
     );
   }
