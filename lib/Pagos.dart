@@ -16,10 +16,11 @@ class PagosScreen extends StatefulWidget {
 
 class _PagosScreenState extends State<PagosScreen> {
   @override
-  void initState() {
+  Future initState() async {
+    
+    await getUser();
+    await notificaciones();
     super.initState();
-    getUser();
-    notificaciones();
   }
   dynamic data;
   dynamic notificacions;
@@ -50,6 +51,7 @@ class _PagosScreenState extends State<PagosScreen> {
     if (response.statusCode == 200) {
       setState(() {
         notificacions = jsonDecode(response.body);
+        return jsonDecode(response.statusCode.toString());
       });
     }
     else {
@@ -99,14 +101,7 @@ class _PagosScreenState extends State<PagosScreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: historialPagos.length,
-              itemBuilder: (context, index) {
-                return HistorialPagoItem(pago: historialPagos[index]);
-              },
-            ),
-          ),
+          
         ],
       ),
     );
