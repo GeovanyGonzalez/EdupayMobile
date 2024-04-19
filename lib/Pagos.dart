@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:js_util';
-
 import 'package:edupay/Homereal.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -16,48 +14,9 @@ class PagosScreen extends StatefulWidget {
 
 class _PagosScreenState extends State<PagosScreen> {
   @override
-  Future initState() async {
-    
-    await getUser();
-    await notificaciones();
+   initState()  {
     super.initState();
-  }
-  dynamic data;
-  dynamic notificacions;
-
-  Future getUser() async {
-    
-    final token = await widget.Storage.read(key: 'token');
-    final response = await http.get(
-      Uri.parse('https://edupay-oi22.onrender.com/api/Padre'),
-      headers: {'Authorization': 'Bearer $token'},
-    );
-    if (response.statusCode == 200) {
-      setState(() {
-        data = jsonDecode(response.body);
-        return jsonDecode(response.statusCode.toString());
-      });
-      
-    } else {
-      throw Exception('Failed to load user');
-    }
-  }
-  Future notificaciones() async {
-    final response = await http.post(
-      Uri.parse('https://edupay-oi22.onrender.com/api/notificaciones'),
-      body: {"userid": data["tutorados"][0]["id"]},
-    );
-
-    if (response.statusCode == 200) {
-      setState(() {
-        notificacions = jsonDecode(response.body);
-        return jsonDecode(response.statusCode.toString());
-      });
-    }
-    else {
-      throw Exception('Failed to load notificaciones');
-    }
-  }
+   }
 
   List<Pago> pagosPendientes = [
     Pago(
